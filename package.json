@@ -2,14 +2,25 @@
   "name": "empty_bot",
   "version": "1.0.0",
   "description": "bot for discord",
-  "main": "bot.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "node dist/main.js"
   },
   "author": "emptyOne322",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.5.1",
     "fs": "0.0.1-security"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   }
 }

@@ -1,7 +1,7 @@
-const Discord = require('discord.js')
-const fs = require('fs')
+import Discord from 'discord'
+import fs from 'fs'
 
-const { token, prefix } = require('./config.json')
+import { token, prefix } from './config.json'
 
 const bot = new Discord.Client()
 bot.commands = new Discord.Collection();
@@ -23,7 +23,7 @@ bot.on('message', message => {
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
 	
-	console.log(commandName);
+	console.log(`called command name: ${commandName}`);
 	
 	if (!bot.commands.has(commandName)) return;
 
