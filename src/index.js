@@ -1,40 +1,46 @@
 import Discord from 'discord'
-import fs from 'fs'
 
-import { token, prefix }  from './config.json'
+import commands from './commands'
+import { token, prefix }  from 'config.json'
 
-// const bot = new Discord.Client()
-// bot.commands = new Discord.Collection();
+const initBot = () => {
+	const bot = new Discord.Client()
+	bot.commands = new Discord.Collection();
+	bot.login(token)
+	return bot
+}
 
-// const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-// 
-// commandFiles.forEach(file => {
-// 	const command = require(`./commands/${file}`);
-// 	bot.commands.set(command.name, command);
-// })
+const prepareCommands = (bot) =>{
+	Object.keys(commands).forEach((commandKey) => {
+		bot.commands.set(commandKey, commands[commandKey]);
+	})
+	console.log(bot.commands);
+}
 
-// bot.on('ready', () => {
-//   console.log(`Logged in as ${bot.user.tag}!`)
-// });
-// 
-// bot.on('message', message => {
-// 	if (!message.content.startsWith(prefix) || message.author.bot) return;
-// 
-// 	const args = message.content.slice(prefix.length).split(/ +/);
-// 	const commandName = args.shift().toLowerCase();
-// 
-// 	console.log(`called command name: ${commandName}`);
-// 
-// 	if (!bot.commands.has(commandName)) return;
-// 
-// 	const command = bot.commands.get(commandName);
-// 
-// 	try {
-// 		command.execute(message, args);
-// 	} catch (error) {
-// 		console.error(error);
-// 		message.reply('there was an error trying to execute that command!');
-// 	}
-// })
-// 
-// bot.login(token)
+const bot = initBot()
+prepareCommands(bot)
+
+bot.on('ready', () => {
+  console.log(`Logged in as ${bot.user.tag}!`)
+});
+
+bot.on('message', message => {
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+	const args = message.content.slice(prefix.length).split(/ +/);
+	const commandName = args.shift().toLowerCase();
+
+	console.log(`called command name: ${commandName}`);
+
+	if (!bot.commands.has(commandName)) return;
+
+	const command = bot.commands.get(commandName);
+
+	try {
+		command.execute(message, args);
+	} catch (error) {
+		console.error(error);
+		message.reply('there was an error trying to execute that command!');
+	}
+})
+

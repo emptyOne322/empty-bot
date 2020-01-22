@@ -12,8 +12,12 @@ module.exports = {
   },
 	resolve: {
 		extensions: ['.js', '.json'],
+		alias: {
+			discord: 'discord.js',
+			src: `${ROOT_DIR}/src`
+		},
 		modules: [`${ROOT_DIR}/node_modules`],
-		mainFiles: ['index', 'browser']
+		mainFields: ['module', 'main']
 	},
 	module: {
 		rules: [

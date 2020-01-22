@@ -1,21 +1,19 @@
-import fs from 'fs'
-
-// const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
-
-commandFiles.forEach(file => {
-	// const command = require(`./commands/${file}`)
-	// bot.commands.set(command.name, command);
-})
+// import commands from './index'
+// console.log('commands: ', commands);
 
 export default {
 	name: 'help',
-	description: 'Shows commands list',
+	description: 'Показывает список комманд',
 	execute(message, args) {
-		// const message = bot.commands.reduce(command => )
-		// bot.commands.forEach(command => {
-		// 	message.channel.send(
-		// 
-		// 	)
+		// const msg = Object.keys(commands).reduce((commandKey, acc) => {
+		// 	console.log(commandKey);
+		// 	// const commandLine =`!${commandKey} - ${commands[commandKey].description}` 
+		// 	// return acc + commandLine
 		// })
+		message.channel.send(
+			'> help - Показывает список комманд \n'+
+			'> ping - ping \n'+
+			'> schedule - Расписание стримов на неделю \n'
+		)
 	},
 }

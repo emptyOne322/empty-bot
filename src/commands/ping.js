@@ -1,6 +1,6 @@
 export default {
 	name: 'ping',
-	description: 'Ping!',
+	description: 'ping',
 	execute(message, args) {
 		message.channel.send('Pong');
 	},
