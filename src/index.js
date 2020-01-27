@@ -1,12 +1,17 @@
 import Discord from 'discord'
 
 import commands from './commands'
-import { token, prefix }  from 'config.json'
+
+import { config } from 'dotenv'
+
+config()
+
+const prefix = process.env.PREFIX
 
 const initBot = () => {
 	const bot = new Discord.Client()
 	bot.commands = new Discord.Collection();
-	bot.login(token)
+	bot.login(process.env.BOT_TOKEN)
 	return bot
 }
 
