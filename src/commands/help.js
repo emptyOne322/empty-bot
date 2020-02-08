@@ -1,19 +1,23 @@
-// import commands from './index'
-// console.log('commands: ', commands);
+import { prefix }  from '../config'
+
+const getCommandsList = async () => {
+	const commands = await import('./index.js')
+	return commands.default
+}
+
 
 export default {
 	name: 'help',
 	description: 'Показывает список комманд',
-	execute(message, args) {
-		// const msg = Object.keys(commands).reduce((commandKey, acc) => {
-		// 	console.log(commandKey);
-		// 	// const commandLine =`!${commandKey} - ${commands[commandKey].description}` 
-		// 	// return acc + commandLine
-		// })
-		message.channel.send(
-			'> help - Показывает список комманд \n'+
-			'> ping - ping \n'+
-			'> schedule - Расписание стримов на неделю \n'
-		)
+	execute : async (message, args) => {
+		const commands = await getCommandsList()
+		
+		const commandsArray = Object.keys(commands).map(key => {
+			return `**${prefix}${commands[key].name}** - ${commands[key].description} \n`
+		})
+		
+		const answer = '>>> '+ commandsArray.join('')
+		
+		message.channel.send(answer)
 	},
 }

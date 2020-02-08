@@ -1,12 +1,9 @@
-import Discord from 'discord'
+import Discord from 'discord.js'
 
 import commands from './commands'
 
-import { config } from 'dotenv'
+import { prefix } from './config'
 
-config()
-
-const prefix = process.env.PREFIX
 
 const initBot = () => {
 	const bot = new Discord.Client()
@@ -19,7 +16,7 @@ const prepareCommands = (bot) =>{
 	Object.keys(commands).forEach((commandKey) => {
 		bot.commands.set(commandKey, commands[commandKey]);
 	})
-	console.log(bot.commands);
+	// console.log(bot.commands);
 }
 
 const bot = initBot()
