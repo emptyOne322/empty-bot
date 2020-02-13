@@ -1,7 +1,8 @@
+import '@babel/polyfill'
+
 import Discord from 'discord.js'
 
 import commands from './commands'
-
 import { prefix } from './config'
 
 
