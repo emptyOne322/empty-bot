@@ -16,7 +16,14 @@ export default {
 		const commands = await getCommandsList()
 		
 		const commandsArray= Object.keys(commands).map(key => {
-			return `**${prefix}${commands[key].name}** - ${commands[key].description} \n`
+			const command = commands[key]
+			let res = `**\n\`${prefix}${command.name}\` - ${command.description}  **\n`
+			if(command.aliases) {
+				const aliasesAsString = command.aliases.join(', ')
+				res += `или: ${aliasesAsString} \n`
+			}
+			
+			return res 
 		})
 		
 		const commandsAsString = commandsArray.join('')
