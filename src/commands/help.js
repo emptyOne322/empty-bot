@@ -10,6 +10,7 @@ const getCommandsList = async () => {
 
 export default {
 	name: 'help',
+	aliases: ['h'],
 	description: 'Показывает список комманд',
 	execute : async (message, args) => {
 		const commands = await getCommandsList()

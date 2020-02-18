@@ -17,7 +17,23 @@ const prepareCommands = (bot) =>{
 	Object.keys(commands).forEach((commandKey) => {
 		bot.commands.set(commandKey, commands[commandKey]);
 	})
-	// console.log(bot.commands);
+}
+
+const checkCommandName = (bot, name) => {
+	
+	let commandName = name
+	
+	
+	bot.commands.find((cmd) => {
+		if(cmd.aliases && cmd.aliases.includes(name)) {
+			commandName = cmd.name
+			return true
+		}
+	})
+	
+	if (!bot.commands.has(commandName)) return;
+	
+	return bot.commands.get(commandName);
 }
 
 const bot = initBot()
@@ -31,14 +47,16 @@ bot.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).split(/ +/);
-	const commandName = args.shift().toLowerCase();
+	let commandName = args.shift().toLowerCase();
 
 	console.log(`called command name: ${commandName}`);
 
-	if (!bot.commands.has(commandName)) return;
+	
 
-	const command = bot.commands.get(commandName);
-
+	const command = checkCommandName(bot, commandName)
+	
+	if(!command) return 
+	
 	try {
 		command.execute(message, args);
 	} catch (error) {
