@@ -1,4 +1,6 @@
 import { prefix }  from '../config'
+import { EMBED_COLOR } from './constants'
+
 
 const getCommandsList = async () => {
 	const commands = await import('./index.js')
@@ -12,12 +14,18 @@ export default {
 	execute : async (message, args) => {
 		const commands = await getCommandsList()
 		
-		const commandsArray = Object.keys(commands).map(key => {
+		const commandsArray= Object.keys(commands).map(key => {
 			return `**${prefix}${commands[key].name}** - ${commands[key].description} \n`
 		})
 		
-		const answer = '>>> '+ commandsArray.join('')
+		const commandsAsString = commandsArray.join('')
 		
-		message.channel.send(answer)
+		const embed = {
+			color: EMBED_COLOR,
+			title: 'Что я могу!',
+			description: commandsAsString
+		}
+		
+		message.channel.send({embed: embed})
 	},
 }
