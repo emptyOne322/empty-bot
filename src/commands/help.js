@@ -13,6 +13,7 @@ export default {
 	aliases: ['h'],
 	description: 'Показывает список комманд',
 	execute : async (message, args) => {
+		
 		const commands = await getCommandsList()
 		
 		const commandsArray= Object.keys(commands).map(key => {
@@ -27,13 +28,13 @@ export default {
 		})
 		
 		const commandsAsString = commandsArray.join('')
-		
 		const embed = {
 			color: EMBED_COLOR,
 			title: 'Что я могу!',
 			description: commandsAsString
 		}
 		
-		message.channel.send({embed: embed})
+		message.channel.send(`<@${message.author.id}>`, {embed})
+		
 	},
 }

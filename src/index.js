@@ -3,14 +3,12 @@ import Discord from 'discord.js'
 
 import commands from './commands'
 import { prefix } from './config'
-import authGoogleCalendar from './authGoogleCalendar'
 
 
 const initBot = () => {
 	const bot = new Discord.Client()
 	bot.commands = new Discord.Collection();
 	bot.login(process.env.BOT_TOKEN)
-	const auth = authGoogleCalendar()
 	return bot
 }
 
