@@ -1,4 +1,6 @@
 import '@babel/polyfill'
+import 'intl'
+
 import Discord from 'discord.js'
 
 import commands from './commands'
