@@ -1,5 +1,5 @@
 const getFormatter = (opts = {}) => {
-	const formatter = new Intl.DateTimeFormat('ru-RU', opts)
+	const formatter = new Intl.DateTimeFormat('ru', opts)
 	return formatter.format
 }
 const formatter = getFormatter({weekday: 'short', hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit' })
