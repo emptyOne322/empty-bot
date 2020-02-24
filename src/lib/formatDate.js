@@ -1,3 +1,6 @@
+Intl = require('intl')
+
+
 const getFormatter = (opts = {}) => {
 	const formatter = new Intl.DateTimeFormat('ru', opts)
 	return formatter.format
