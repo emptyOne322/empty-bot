@@ -35,7 +35,7 @@ export default {
 		const events = await listEvents()
 		const eventsAsStringArray = events.map(e => {
 			const startTime = formatDate(e.start.dateTime)
-			return `**${e.summary}** - ${startTime}`
+			return `**${startTime}** - ${e.summary}`
 		})
 		const eventsAsString = eventsAsStringArray.join('\n')
 		
