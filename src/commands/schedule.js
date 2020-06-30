@@ -1,8 +1,7 @@
-import { google } from 'googleapis'
-
-import { GOOGLE_API_KEY } from '../config' 
+import calendarApi from '../calendarApi'
 import formatDate from '../lib/formatDate'
 import { EMBED_COLOR } from './constants'
+import {GOOGLE_CALENDAR_ID} from '../config'
 
 export default {
 	name: 'schedule',
@@ -17,7 +16,7 @@ export default {
 		}
 		else {
 			const eventsAsString = eventsToString(events)
-			
+
 			const embed = {
 				title: 'Ближашие стримы',
 				description: eventsAsString,
@@ -25,7 +24,7 @@ export default {
 			}
 			message.channel.send(`<@${message.author.id}>`, {embed});
 		}
-		
+
 	},
 };
 
@@ -38,22 +37,12 @@ const eventsToString = (events = []) => {
 }
 
 const  listEvents = async () => {
-	let events
-  const calendar = google.calendar({version: 'v3', auth: GOOGLE_API_KEY});
-  await new Promise((resolve, reject) => {
-		calendar.events.list({
-	    calendarId: 'aukpddfuci20k00kqm51tkl3rc@group.calendar.google.com',
-	    timeMin: (new Date()).toISOString(),
-	    maxResults: 10,
-	    singleEvents: true,
-	    orderBy: 'startTime',
-	  }, (err, res) => {
-	    if (err) {
-				reject()
-			}
-	    events = res.data.items
-			resolve()
-	  })
-	})
-	return events
+	const res = await calendarApi.events.list({
+		calendarId: GOOGLE_CALENDAR_ID,
+		timeMin: (new Date()).toISOString(),
+		maxResults: 10,
+		singleEvents: true,
+		orderBy: 'startTime',
+	}).catch((e) => console.log(e))
+	return res.data.items
 }

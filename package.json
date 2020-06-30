@@ -14,18 +14,19 @@
   "author": "emptyOne322",
   "license": "ISC",
   "dependencies": {
-    "@babel/polyfill": "^7.8.3",
-    "discord.js": "^11.5.1",
+    "@babel/polyfill": "^7.10.1",
+    "axios": "^0.19.2",
+    "discord.js": "^11.6.4",
     "dotenv": "^8.2.0",
     "googleapis": "^47.0.0",
     "intl": "^1.2.5"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.3",
-    "@babel/core": "^7.8.4",
-    "@babel/node": "^7.8.4",
-    "@babel/preset-env": "^7.8.3",
-    "babel-loader": "^8.0.6",
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/node": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0"
   }
 }

@@ -3,9 +3,9 @@ import { config } from 'dotenv'
 config()
 const prefix = process.env.PREFIX
 
-const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
+const GOOGLE_CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID
 
 export {
 	prefix,
-	GOOGLE_API_KEY
+	GOOGLE_CALENDAR_ID
 }
