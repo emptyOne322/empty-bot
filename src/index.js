@@ -5,6 +5,9 @@ import Discord from 'discord.js'
 
 import commands from './commands'
 import { prefix } from './config'
+import { guildMemberAdd, guildMemberRemove } from './events'
+import { prefix, GOOGLE_CALENDAR_ID, TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET } from './config'
+import calendarApi from './apies/calendarApi'
 
 
 const initBot = () => {
@@ -43,6 +46,10 @@ prepareCommands(bot)
 bot.on('ready', () => {
   console.log(`Logged in as ${bot.user.tag}!`)
 });
+
+bot.on('guildMemberAdd', guildMemberAdd)
+
+bot.on('guildMemberRemove', guildMemberRemove)
 
 bot.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;

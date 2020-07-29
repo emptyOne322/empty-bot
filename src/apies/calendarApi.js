@@ -1,5 +1,5 @@
 import { google } from 'googleapis'
-import { GOOGLE_APPLICATION_CREDENTIALS } from './config'
+import { GOOGLE_APPLICATION_CREDENTIALS } from '../config'
 
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 

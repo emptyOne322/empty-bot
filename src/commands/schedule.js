@@ -1,4 +1,4 @@
-import calendarApi from '../calendarApi'
+import calendarApi from '../apies/calendarApi'
 import formatDate from '../lib/formatDate'
 import { EMBED_COLOR } from './constants'
 import {GOOGLE_CALENDAR_ID} from '../config'
