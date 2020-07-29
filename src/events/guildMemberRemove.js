@@ -1,4 +1,4 @@
-import emojis from '../emojis'
+// import emojis from '../emojis'
 
 export default (member) => {
 	const { guild } = member
