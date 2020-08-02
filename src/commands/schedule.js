@@ -7,12 +7,12 @@ export default {
 	name: 'schedule',
 	aliases: ['sch'],
 	description: 'Ближайшие стримы',
-	async execute(message, args) {
+	async execute(message, args, bot) {
 		const events = await listEvents()
+
 		if(!events.length) {
-			const vpr = message.channel.guild.emojis.get('534814958186135553')
-			const vprAsString = vpr.toString()
-			message.channel.send(`Милорд <@${message.channel.guild.ownerID}>, народ требует расписания ${vprAsString}${vprAsString}${vprAsString}`);
+			const vpr = bot.emojisDictionary['violet_pay_respect']
+			message.channel.send(`Милорд <@${message.channel.guild.ownerID}>, народ требует расписания ${vpr}${vpr}${vpr}`);
 		}
 		else {
 			const eventsAsString = eventsToString(events)
