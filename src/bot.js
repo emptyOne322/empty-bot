@@ -15,9 +15,9 @@ const initBot = () => {
 
   bot.on('ready', ready(bot))
 
-  bot.on('guildMemberAdd', guildMemberAdd)
+  bot.on('guildMemberAdd', guildMemberAdd(bot))
 
-  bot.on('guildMemberRemove', guildMemberRemove)
+  bot.on('guildMemberRemove', guildMemberRemove(bot))
 
   bot.on('message', message(bot))
 
