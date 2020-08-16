@@ -2,6 +2,7 @@ import Discord from 'discord.js'
 
 import commands from './commands'
 import { guildMemberAdd, guildMemberRemove, ready, message } from './events'
+import mark from './timers/mark'
 
 const prepareCommands = (bot) =>{
   Object.keys(commands).forEach((commandKey) => {
@@ -20,6 +21,8 @@ const initBot = () => {
   bot.on('guildMemberRemove', guildMemberRemove(bot))
 
   bot.on('message', message(bot))
+
+  bot.setInterval(mark, 3000 || 604800000, bot)
 
   prepareCommands(bot)
 
