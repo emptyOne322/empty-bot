@@ -18,7 +18,7 @@ export default {
 			const eventsAsString = eventsToString(events)
 
 			const embed = {
-				title: 'Ближашие стримы',
+				title: 'Ближайшие стримы',
 				description: eventsAsString,
 				color: EMBED_COLOR,
 			}
