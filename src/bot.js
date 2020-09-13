@@ -4,6 +4,8 @@ import commands from './commands'
 import { guildMemberAdd, guildMemberRemove, ready, message } from './events'
 import mark from './timers/mark'
 
+import { WEEK } from './constants'
+
 const prepareCommands = (bot) =>{
   Object.keys(commands).forEach((commandKey) => {
     bot.commands.set(commandKey, commands[commandKey]);
@@ -22,7 +24,7 @@ const initBot = () => {
 
   bot.on('message', message(bot))
 
-  bot.setInterval(mark, 3000 || 604800000, bot)
+  bot.setInterval(mark, WEEK, bot)
 
   prepareCommands(bot)
 
