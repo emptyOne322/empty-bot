@@ -1,22 +1,31 @@
 import Discord from 'discord.js'
+import cron from 'node-cron'
 
 import { WEEK } from '../constants'
 
-export default async (bot) => {
-  const guild = bot.guilds.first()
+export default (bot) => {
 
-  const role = await createMarkRole(guild)
+  const mark = async (fireTime) => {
+    const guild = bot.guilds.first()
 
-  const markedUser = getMarkedUser(bot, guild)
+    const role = await createMarkRole(guild)
+
+    const markedUser = getMarkedUser(bot, guild)
 
 
-  markedUser.addRole(role.id)
-  bot.setTimeout(removeMarkRole, WEEK, markedUser, role)
+    markedUser.addRole(role.id)
+    bot.setTimeout(removeMarkRole, WEEk, markedUser, role)
 
-  const pd = bot.emojisDictionary['PepoDance']
-  const hh = bot.emojisDictionary['heh']
-  guild.systemChannel.send(`>>> **${markedUser.user.username}** получает благославение ${pd}${pd}${pd} Пользуйся с умом ${hh}`)
+    const pd = bot.emojisDictionary['PepoDance']
+    const hh = bot.emojisDictionary['heh']
+    guild.systemChannel.send(`>>> **${markedUser.user.username}** получает благославение ${pd}${pd}${pd} Пользуйся с умом ${hh}`)
+
+  }
+
+  const job = cron.schedule('00 11 * * 1', mark, {timezone: 'Europe/Moscow'})
 }
+
+
 
 const ROLE_NAME = 'Благословенный'
 

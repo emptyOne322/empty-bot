@@ -2,7 +2,6 @@ import Discord from 'discord.js'
 
 import commands from './commands'
 import { guildMemberAdd, guildMemberRemove, ready, message } from './events'
-import mark from './timers/mark'
 
 import { WEEK } from './constants'
 
@@ -23,8 +22,6 @@ const initBot = () => {
   bot.on('guildMemberRemove', guildMemberRemove(bot))
 
   bot.on('message', message(bot))
-
-  bot.setInterval(mark, WEEK, bot)
 
   prepareCommands(bot)
 

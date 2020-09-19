@@ -1,3 +1,6 @@
+import createMarkCron from '../jobs/createMarkCron'
+
+
 export default (bot) => () => {
   bot.emojisDictionary = bot.emojis.reduce(
     (acc, i) => {
@@ -6,5 +9,9 @@ export default (bot) => () => {
     },
     {}
   )
+
+  createMarkCron(bot)
+
+
   console.log(`Logged in as ${bot.user.tag}!`)
 }
