@@ -14,7 +14,7 @@ export default (bot) => {
 
 
     markedUser.addRole(role.id)
-    bot.setTimeout(removeMarkRole, WEEk, markedUser, role)
+    bot.setTimeout(removeMarkRole, WEEK, markedUser, role)
 
     const pd = bot.emojisDictionary['PepoDance']
     const hh = bot.emojisDictionary['heh']
