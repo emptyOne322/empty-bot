@@ -3,6 +3,8 @@ import Discord from 'discord.js'
 import commands from './commands'
 import { guildMemberAdd, guildMemberRemove, ready, message } from './events'
 
+import { createMarkCron, createScheduleCron } from './jobs'
+
 import { WEEK } from './constants'
 
 const prepareCommands = (bot) =>{
@@ -15,7 +17,7 @@ const initBot = () => {
 	const bot = new Discord.Client()
 	bot.commands = new Discord.Collection();
 
-  bot.on('ready', ready(bot))
+  bot.on('ready', ready(bot, [createMarkCron, createScheduleCron]))
 
   bot.on('guildMemberAdd', guildMemberAdd(bot))
 

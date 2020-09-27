@@ -1,5 +1,5 @@
 import { prefix }  from '../config'
-import { EMBED_COLOR } from './constants'
+import { EMBED_COLOR } from '../constants'
 
 
 const getCommandsList = async () => {
@@ -13,9 +13,9 @@ export default {
 	aliases: ['h'],
 	description: 'Показывает список комманд',
 	execute : async (message, args) => {
-		
+
 		const commands = await getCommandsList()
-		
+
 		const commandsArray= Object.keys(commands).map(key => {
 			const command = commands[key]
 			let res = `**\n\`${prefix}${command.name}\` - ${command.description}  **\n`
@@ -23,18 +23,18 @@ export default {
 				const aliasesAsString = command.aliases.join(', ')
 				res += `или: ${aliasesAsString} \n`
 			}
-			
-			return res 
+
+			return res
 		})
-		
+
 		const commandsAsString = commandsArray.join('')
 		const embed = {
 			color: EMBED_COLOR,
 			title: 'Что я могу!',
 			description: commandsAsString
 		}
-		
+
 		message.channel.send(`<@${message.author.id}>`, {embed})
-		
+
 	},
 }
