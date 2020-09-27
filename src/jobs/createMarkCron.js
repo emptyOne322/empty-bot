@@ -1,4 +1,3 @@
-import Discord from 'discord.js'
 import cron from 'node-cron'
 
 import { WEEK } from '../constants'
