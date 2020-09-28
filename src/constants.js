@@ -1,1 +1,1 @@
-export const WEEK = 604800000
+export const WEEK = 604800000;

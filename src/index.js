@@ -1,6 +1,6 @@
-import '@babel/polyfill'
-import 'intl'
+import '@babel/polyfill';
+import 'intl';
 
-import bot from './bot'
+import bot from './bot';
 
-bot.login(process.env.BOT_TOKEN)
+bot.login(process.env.BOT_TOKEN);

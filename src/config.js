@@ -1,11 +1,12 @@
-import { config } from 'dotenv'
+import { config } from 'dotenv';
 
-config()
-const prefix = process.env.PREFIX
+config();
+const prefix = process.env.PREFIX;
 
-const GOOGLE_CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID
+const { GOOGLE_CALENDAR_ID, GOOGLE_APPLICATION_CREDENTIALS } = process.env;
 
 export {
-	prefix,
-	GOOGLE_CALENDAR_ID
-}
+  prefix,
+  GOOGLE_CALENDAR_ID,
+  GOOGLE_APPLICATION_CREDENTIALS,
+};
