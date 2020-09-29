@@ -1,6 +1,4 @@
-import createMarkCron from '../jobs/createMarkCron';
-
-export default (bot) => () => {
+export default (bot, callbacks = []) => () => {
   bot.emojisDictionary = bot.emojis.reduce(
     (acc, i) => {
       acc[i.name] = i.toString();
@@ -9,7 +7,9 @@ export default (bot) => () => {
     {},
   );
 
-  createMarkCron(bot);
+  callbacks.forEach((func) => {
+    func(bot);
+  });
 
   global.console.log(`Logged in as ${bot.user.tag}!`);
 };

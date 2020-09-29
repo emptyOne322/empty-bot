@@ -1,26 +1,6 @@
-import calendarApi from '../apies/calendarApi';
-import formatDate from '../lib/formatDate';
-import { EMBED_COLOR } from './constants';
-import { GOOGLE_CALENDAR_ID } from '../config';
-
-const listEvents = async () => {
-  const res = await calendarApi.events.list({
-    calendarId: GOOGLE_CALENDAR_ID,
-    timeMin: (new Date()).toISOString(),
-    maxResults: 10,
-    singleEvents: true,
-    orderBy: 'startTime',
-  }).catch((e) => global.console.log(e));
-  return res.data.items;
-};
-
-const eventsToString = (events = []) => {
-  const eventsAsStringArray = events.map((e) => {
-    const startTime = formatDate(e.start.dateTime);
-    return `**${startTime}** - ${e.summary}`;
-  });
-  return eventsAsStringArray.join('\n');
-};
+import { listEvents } from '../apies/calendarApi';
+import eventsToString from '../utils/eventsToString';
+import { EMBED_COLOR } from '../constants';
 
 export default {
   name: 'schedule',
