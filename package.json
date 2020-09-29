@@ -9,7 +9,9 @@
     "build-server": "npm i && babel ./src -d  ./dist ",
     "build": "npm run clean && npm run build-server",
     "start-dev": "babel-node ./src/index.js",
-    "start": "node ./dist/index.js"
+    "start": "node ./dist/index.js",
+    "lint": "eslint './src/**/*.js'",
+    "lint:fix": "eslint './src/**/*.js' --fix"
   },
   "author": "emptyOne322",
   "license": "ISC",
@@ -28,6 +30,9 @@
     "@babel/node": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
     "babel-loader": "^8.1.0",
-    "babel-plugin-module-resolver": "^4.0.0"
+    "babel-plugin-module-resolver": "^4.0.0",
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
   }
 }

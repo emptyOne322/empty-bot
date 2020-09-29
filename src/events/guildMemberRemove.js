@@ -1,8 +1,7 @@
 export default (bot) => (member) => {
-	const { guild } = member
-	const memberTag = member.user.tag;
-	if(guild.systemChannel){
-		const vpr = bot.emojisDictionary['violet_pay_respect']
-		guild.systemChannel.send(`${member.user.username} покинул нас ${vpr}${vpr}${vpr}`);
-	}
-}
+  const { guild } = member;
+  if (guild.systemChannel) {
+    const vpr = bot.emojisDictionary.violet_pay_respect;
+    guild.systemChannel.send(`${member.user.username} покинул нас ${vpr}${vpr}${vpr}`);
+  }
+};
