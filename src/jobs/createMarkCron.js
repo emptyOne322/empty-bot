@@ -1,7 +1,5 @@
 import cron from 'node-cron';
 
-import { WEEK } from '../constants';
-
 const ROLE_NAME = 'Благословенный';
 
 const ROLE = {
@@ -10,10 +8,6 @@ const ROLE = {
   permissions: ['MOVE_MEMBERS', 'MUTE_MEMBERS'],
   position: 13, // todo: find better disition
   hoist: true,
-};
-
-const removeMarkRole = (member, role) => {
-  member.removeRole(role.id);
 };
 
 const createMarkRole = async (guild) => {
@@ -36,16 +30,24 @@ const getMarkedUser = (bot, guild) => {
   return markedGuildMember;
 };
 
+const removeRoleFromOldUser = (guild, role) => {
+  const member = role.members.first();
+  if (member) {
+    member.removeRole(role);
+  }
+};
+
 export default (bot) => {
   const mark = async () => {
     const guild = bot.guilds.first();
 
     const role = await createMarkRole(guild);
 
+    removeRoleFromOldUser(guild, role);
+
     const markedUser = getMarkedUser(bot, guild);
 
     markedUser.addRole(role.id);
-    bot.setTimeout(removeMarkRole, WEEK, markedUser, role);
 
     const pd = bot.emojisDictionary.PepoDance;
     const hh = bot.emojisDictionary.heh;
