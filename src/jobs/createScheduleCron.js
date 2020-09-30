@@ -19,5 +19,5 @@ export default (bot) => {
     }
   };
 
-  cron.schedule('00 11 * * 1', postSchedule, { timezone: 'Europe/Moscow' });
+  cron.schedule('00 12 * * 1', postSchedule, { timezone: 'Europe/Moscow' });
 };
