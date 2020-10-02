@@ -1,5 +1,5 @@
 import { prefix } from '../config';
-import { EMBED_COLOR } from './constants';
+import { EMBED_COLOR } from '../constants';
 
 const getCommandsList = async () => {
   const commands = await import('./index.js');

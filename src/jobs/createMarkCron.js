@@ -11,12 +11,12 @@ const ROLE = {
 };
 
 const createMarkRole = async (guild) => {
-  let role = guild.roles.find((i) => i.name === ROLE_NAME);
+  let role = guild.roles.cache.find((i) => i.name === ROLE_NAME);
   if (role) {
     global.console.log(`Role ${ROLE_NAME} already exists`);
     return role;
   }
-  role = await guild.createRole(ROLE)
+  role = await guild.roles.create({ data: ROLE })
     .then((r) => { global.console.log(`Role ${ROLE_NAME} created`); return r; })
     .catch((e) => { global.console.log(e); });
 
@@ -24,22 +24,22 @@ const createMarkRole = async (guild) => {
 };
 
 const getMarkedUser = (bot, guild) => {
-  const users = bot.users.filter((i) => !i.bot && i.discriminator !== 9025 && i);
+  const users = bot.users.cache.filter((i) => !i.bot && i.discriminator !== 9025 && i);
   const marked = users.random();
-  const markedGuildMember = guild.members.find((i) => i.id === marked.id);
+  const markedGuildMember = guild.members.cache.find((i) => i.id === marked.id);
   return markedGuildMember;
 };
 
 const removeRoleFromOldUser = (guild, role) => {
   const member = role.members.first();
   if (member) {
-    member.removeRole(role);
+    member.roles.remove(role);
   }
 };
 
 export default (bot) => {
   const mark = async () => {
-    const guild = bot.guilds.first();
+    const guild = bot.guilds.cache.first();
 
     const role = await createMarkRole(guild);
 
@@ -47,7 +47,7 @@ export default (bot) => {
 
     const markedUser = getMarkedUser(bot, guild);
 
-    markedUser.addRole(role.id);
+    markedUser.roles.add(role.id);
 
     const pd = bot.emojisDictionary.PepoDance;
     const hh = bot.emojisDictionary.heh;

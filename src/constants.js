@@ -1,3 +1,3 @@
 export const WEEK = 604800000;
 
-export const EMBED_COLOR = '16763185';
+export const EMBED_COLOR = '#FFC936';
