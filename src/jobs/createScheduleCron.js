@@ -7,7 +7,7 @@ import { EMBED_COLOR } from '../constants';
 export default (bot) => {
   const postSchedule = async () => {
     const events = await listEvents();
-    const guild = bot.guilds.first();
+    const guild = bot.guilds.cache.first();
     if (events.length) {
       const eventsAsString = eventsToString(events);
       const embed = {

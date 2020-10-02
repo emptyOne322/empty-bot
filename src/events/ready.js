@@ -1,5 +1,5 @@
 export default (bot, callbacks = []) => () => {
-  bot.emojisDictionary = bot.emojis.reduce(
+  bot.emojisDictionary = bot.emojis.cache.reduce(
     (acc, i) => {
       acc[i.name] = i.toString();
       return acc;
