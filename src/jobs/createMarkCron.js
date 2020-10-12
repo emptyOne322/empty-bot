@@ -6,17 +6,17 @@ const ROLE = {
   name: ROLE_NAME,
   color: '#0DA5CE',
   permissions: ['MOVE_MEMBERS', 'MUTE_MEMBERS'],
-  position: 13, // todo: find better disition
   hoist: true,
 };
 
 const createMarkRole = async (guild) => {
-  let role = guild.roles.cache.find((i) => i.name === ROLE_NAME);
+  const { roles } = guild;
+  let role = roles.cache.find((i) => i.name === ROLE_NAME);
   if (role) {
     global.console.log(`Role ${ROLE_NAME} already exists`);
     return role;
   }
-  role = await guild.roles.create({ data: ROLE })
+  role = await roles.create({ data: { ...ROLE, position: roles.highest.position - 3 } })
     .then((r) => { global.console.log(`Role ${ROLE_NAME} created`); return r; })
     .catch((e) => { global.console.log(e); });
 
