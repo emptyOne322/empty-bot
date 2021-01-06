@@ -17,7 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.10.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
     "googleapis": "^47.0.0",
